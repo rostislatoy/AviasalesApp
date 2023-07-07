@@ -1,0 +1,45 @@
+$bg: #f3f7fa;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: $bg;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg;
+}
+.main {
+  display: flex;
+  justify-content: center;
+
+  padding: 0 2vw;
+  margin: 0 auto;
+}
+.main-tickets__form {
+  border: 2px red solid;
+}
+.main-tickets__list {
+  border: 2px red solid;
+}
+.load-box {
+  width: 100%;
+  padding: 42px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (min-width: 700px) {
+  .main {
+    max-width: 900px;
+  }
+}

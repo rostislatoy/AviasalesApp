@@ -1,0 +1,66 @@
+$bg-card: #fff;
+$checkbox: #2196f3;
+$form-txt: #4a4a4a;
+
+.form {
+  display: flex;
+  margin-right: 20px;
+  flex-direction: column;
+  background: $bg-card;
+  width: 232px;
+  padding: 25px;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.checkbox {
+  display: inline-block;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border: 1px solid $checkbox;
+  margin-right: 8px;
+  margin-top: 10px;
+}
+
+.checkbox::after {
+  content: "";
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 4px;
+  width: 5px;
+  height: 10px;
+  border: 1px solid $checkbox;
+  border-width: 0 1px 1px 0;
+  transform: rotate(45deg);
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked + .checkbox::after {
+  display: block;
+}
+
+.form-title {
+  color: $form-txt;
+  font-size: 12px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.checkbox-label {
+  color: $form-txt;
+  font-size: 13px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}

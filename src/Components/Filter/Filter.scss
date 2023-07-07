@@ -1,0 +1,31 @@
+$checked: #2196f3;
+$border: #dfe5ec;
+$not-checked-txt: #4a4a4a;
+.filter-list {
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+.filter-button {
+  outline: none;
+  border: 1px solid $border;
+  background: white;
+  color: $not-checked-txt;
+  text-align: center;
+  font-size: 12px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 10px;
+  width: 168px;
+  &.selected {
+    background: $checked;
+    color: white;
+  }
+}
