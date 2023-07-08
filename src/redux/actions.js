@@ -31,3 +31,12 @@ export const uploadTickets = (tickets) => (dispatch) => {
     payload: tickets,
   });
 };
+
+export const addFiveTickets = () => ({
+  type: actionTypes.ADD_MORE_TICKETS,
+});
+
+export const stopFetching = (stop) => ({
+  type: "FETCH_STOP",
+  payload: stop,
+});

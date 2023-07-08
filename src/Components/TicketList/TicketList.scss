@@ -1,7 +1,44 @@
+$btn: #2196f3;
+
 .ticket-list {
   position: relative;
-  width: 502px;
+  width: 100%;
   height: auto;
 
   margin-top: 0px;
+}
+
+.ticket-list__btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 35px;
+  border: none;
+  color: white;
+  background: $btn;
+  font-family: Open Sans;
+  font-size: 14px;
+  border-radius: 8px;
+  box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-list__no-tickets-message {
+  width: 100%;
+  text-align: center;
+  padding: 58px;
+  background: white;
+  margin-top: 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-family: Open Sans;
+  color: $btn;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 500px) {
+  .ticket-list__no-tickets-message {
+    min-width: calc(100% - 500px);
+  }
+  .ticket-list {
+    min-width: 100%;
+  }
 }

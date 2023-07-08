@@ -1,3 +1,4 @@
+import { de } from "date-fns/locale";
 import { actionTypes, initialFormState } from "./constants";
 
 export const ticketReducer = (state = [], action) => {
@@ -56,6 +57,24 @@ export const formReducer = (state = initialFormState, action) => {
         threeStopOversChecked: !state.threeStopOversChecked,
         allChecked: false,
       };
+    default:
+      return state;
+  }
+};
+
+export const addFiveTicketsReducer = (state = 5, action) => {
+  switch (action.type) {
+    case "ADD_MORE_TICKETS":
+      return state + 5;
+    default:
+      return state;
+  }
+};
+
+export const stopFetchingReducer = (state = false, action) => {
+  switch (action.type) {
+    case "FETCH_STOP":
+      return (state = action.payload);
     default:
       return state;
   }

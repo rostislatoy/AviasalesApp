@@ -29,3 +29,10 @@ $not-checked-txt: #4a4a4a;
     color: white;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .filter-list {
+    min-width: 100%;
+    margin-top: 20px;
+  }
+}

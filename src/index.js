@@ -6,7 +6,13 @@ import {
   combineReducers,
   compose,
 } from "redux";
-import { ticketReducer, filterReducer, formReducer } from "./redux/reducer";
+import {
+  ticketReducer,
+  filterReducer,
+  formReducer,
+  addFiveTicketsReducer,
+  stopFetchingReducer,
+} from "./redux/reducer";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import App from "./App/App";
@@ -20,6 +26,8 @@ const rootReducer = combineReducers({
   tickets: ticketReducer,
   filter: filterReducer,
   form: formReducer,
+  visTickets: addFiveTicketsReducer,
+  stop: stopFetchingReducer,
 });
 
 const store = legacy_createStore(

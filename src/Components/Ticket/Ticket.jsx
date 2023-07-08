@@ -7,11 +7,10 @@ import "./Ticket.scss";
 function Ticket(props) {
   const { price, img, segments } = props;
 
-  console.log(img);
   return (
     <div className="ticket">
       <div className="ticket-header">
-        <h1 className="ticket-header title">{price}</h1>
+        <h1 className="ticket-header title">{`${price} Р`}</h1>
         <img src={`https://${img}`} className="ticket-header ticket-logo"></img>
       </div>
 

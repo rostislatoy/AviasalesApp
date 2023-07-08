@@ -1,18 +1,41 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useEffect } from "react";
 import Header from "../Components/Header/Header";
 import Form from "../Components/Form/Form";
 import Filter from "../Components/Filter/Filter";
 import TicketList from "../Components/TicketList/TicketList";
 import Loader from "../Components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { uploadTickets } from "../redux/actions";
+import { uploadTickets, stopFetching } from "../redux/actions";
 import generateRandomId from "./helpers/generateID";
 import "./App.scss";
 
 export default function App() {
   const tickets = useSelector((state) => state.tickets);
+  const visibility = useSelector((state) => state.visTickets);
+  const filter = useSelector((state) => state.filter);
+  const form = useSelector((state) => state.form);
   const dispatch = useDispatch();
-
+  const errorTicket = {
+    id: 99999999,
+    price: "ERROR!",
+    img: "",
+    segments: [
+      {
+        origin: "",
+        destination: "",
+        date: new Date(),
+        duration: 0,
+        stops: ["failed", "to", "fetched"],
+      },
+      {
+        origin: "",
+        destination: "",
+        date: new Date(),
+        duration: 0,
+        stops: ["failed", "to", "fetched"],
+      },
+    ],
+  };
   async function getTickets() {
     const search = "https://aviasales-test-api.kata.academy/search";
     const tickets = "https://aviasales-test-api.kata.academy/tickets";
@@ -37,23 +60,24 @@ export default function App() {
               };
               return newTicket;
             });
-
-            return ticketsWithID;
+            return [ticketsWithID, ticketsJSON.stop];
           }
         } catch (error) {
-          console.error(error);
+          return [errorTicket];
         }
       }
     } catch (error) {
-      console.error(error);
+      return [errorTicket];
     }
-    return [];
+    return [errorTicket];
   }
 
   useEffect(() => {
     const fetchTickets = async () => {
-      const fetchedTickets = await getTickets();
+      const [fetchedTickets, stop] = await getTickets();
       dispatch(uploadTickets(fetchedTickets));
+
+      dispatch(stopFetching(false));
     };
     fetchTickets();
   }, []);
@@ -61,7 +85,12 @@ export default function App() {
   useEffect(() => {}, [tickets]);
 
   const isLoad = tickets.length ? (
-    <TicketList tickets={tickets} />
+    <TicketList
+      tickets={tickets}
+      visibility={visibility}
+      filter={filter}
+      form={form}
+    />
   ) : (
     <div className="load-box">
       <Loader />
@@ -71,10 +100,10 @@ export default function App() {
     <section className="App">
       <Header />
       <main className="main">
-        <aside className="main-ticets__form">
+        <aside className="main-tickets__form">
           <Form />
         </aside>
-        <section className="main-tickets-list">
+        <section className="main-tickets__list">
           <Filter />
           {isLoad}
         </section>

@@ -54,3 +54,9 @@ $ticket-title-txt: #a0b0b9;
     color: $ticket-title-txt;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .ticket {
+    max-width: 100%;
+  }
+}

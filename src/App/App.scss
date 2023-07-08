@@ -21,12 +21,7 @@ body {
   padding: 0 2vw;
   margin: 0 auto;
 }
-.main-tickets__form {
-  border: 2px red solid;
-}
-.main-tickets__list {
-  border: 2px red solid;
-}
+
 .load-box {
   width: 100%;
   padding: 42px;
@@ -41,5 +36,20 @@ body {
 @media screen and (min-width: 700px) {
   .main {
     max-width: 900px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .main-tickets__form {
+    width: 100%;
+  }
+  .main-tickets__list {
+    max-width: 100%;
   }
 }

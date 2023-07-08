@@ -7,7 +7,7 @@ import "./Filter.scss";
 const Filter = () => {
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
-  console.log(filter);
+
   const handleFilterClick = (filter) => {
     dispatch(updateFilter(filter));
   };
