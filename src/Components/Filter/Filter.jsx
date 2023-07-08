@@ -8,8 +8,8 @@ const Filter = () => {
   const filter = useSelector((state) => state.filter);
   const dispatch = useDispatch();
 
-  const handleFilterClick = (filter) => {
-    dispatch(updateFilter(filter));
+  const handleFilterClick = (newFilter) => {
+    dispatch(updateFilter(newFilter));
   };
 
   return (

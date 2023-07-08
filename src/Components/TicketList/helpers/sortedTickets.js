@@ -1,5 +1,5 @@
-export const sortedTickets = (array, filter, formState) => {
-  return [...array]
+export const sortedTickets = (array, filter, formState) =>
+  [...array]
     .filter((ticket) => {
       if (formState.allChecked) {
         return true;
@@ -57,4 +57,3 @@ export const sortedTickets = (array, filter, formState) => {
         return a.price / aTotalStops - b.price / bTotalStops;
       }
     });
-};

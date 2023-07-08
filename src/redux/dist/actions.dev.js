@@ -1,5 +1,3 @@
-"use strict";
-
 Object.defineProperty(exports, "__esModule", {
   value: true,
 });
@@ -12,9 +10,9 @@ exports.toggleThreeStopOversChecked =
   exports.saveTicket =
     void 0;
 
-var _constants = require("./constants");
+const _constants = require("./constants");
 
-var saveTicket = function saveTicket(object) {
+const saveTicket = function saveTicket(object) {
   return {
     type: "TICKET",
     payload: object,
@@ -23,7 +21,7 @@ var saveTicket = function saveTicket(object) {
 
 exports.saveTicket = saveTicket;
 
-var updateFilter = function updateFilter(filter) {
+const updateFilter = function updateFilter(filter) {
   return {
     type: "UPDATE_FILTER",
     payload: filter,
@@ -32,7 +30,7 @@ var updateFilter = function updateFilter(filter) {
 
 exports.updateFilter = updateFilter;
 
-var toggleAllChecked = function toggleAllChecked() {
+const toggleAllChecked = function toggleAllChecked() {
   return {
     type: _constants.actionTypes.TOGGLE_ALL_CHECKED,
   };
@@ -40,7 +38,7 @@ var toggleAllChecked = function toggleAllChecked() {
 
 exports.toggleAllChecked = toggleAllChecked;
 
-var toggleNoStopOverChecked = function toggleNoStopOverChecked() {
+const toggleNoStopOverChecked = function toggleNoStopOverChecked() {
   return {
     type: _constants.actionTypes.TOGGLE_NO_STOP_OVER_CHECKED,
   };
@@ -48,7 +46,7 @@ var toggleNoStopOverChecked = function toggleNoStopOverChecked() {
 
 exports.toggleNoStopOverChecked = toggleNoStopOverChecked;
 
-var toggleOneStopOverChecked = function toggleOneStopOverChecked() {
+const toggleOneStopOverChecked = function toggleOneStopOverChecked() {
   return {
     type: _constants.actionTypes.TOGGLE_ONE_STOP_OVER_CHECKED,
   };
@@ -56,7 +54,7 @@ var toggleOneStopOverChecked = function toggleOneStopOverChecked() {
 
 exports.toggleOneStopOverChecked = toggleOneStopOverChecked;
 
-var toggleTwoStopOversChecked = function toggleTwoStopOversChecked() {
+const toggleTwoStopOversChecked = function toggleTwoStopOversChecked() {
   return {
     type: _constants.actionTypes.TOGGLE_TWO_STOP_OVERS_CHECKED,
   };
@@ -64,7 +62,7 @@ var toggleTwoStopOversChecked = function toggleTwoStopOversChecked() {
 
 exports.toggleTwoStopOversChecked = toggleTwoStopOversChecked;
 
-var toggleThreeStopOversChecked = function toggleThreeStopOversChecked() {
+const toggleThreeStopOversChecked = function toggleThreeStopOversChecked() {
   return {
     type: _constants.actionTypes.TOGGLE_THREE_STOP_OVERS_CHECKED,
   };

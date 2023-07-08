@@ -23,7 +23,7 @@ body {
 }
 
 .load-box {
-  width: 100%;
+  min-width: 512px;
   padding: 42px;
   margin-top: 20px;
   display: flex;

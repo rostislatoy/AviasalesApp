@@ -1,4 +1,3 @@
-import { de } from "date-fns/locale";
 import { actionTypes, initialFormState } from "./constants";
 
 export const ticketReducer = (state = [], action) => {

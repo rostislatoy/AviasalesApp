@@ -10,7 +10,7 @@ function TicketList({ tickets, visibility, filter, form }) {
   const element = sortedTickets(tickets, filter, form)
     .slice(0, visibility)
     .map((el) => {
-      const { price, img, id } = el;
+      const { id } = el;
       return <Ticket key={id} {...el} />;
     });
 

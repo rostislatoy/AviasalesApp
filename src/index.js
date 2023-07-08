@@ -1,4 +1,5 @@
 import React from "react";
+import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import {
   legacy_createStore,
@@ -6,6 +7,7 @@ import {
   combineReducers,
   compose,
 } from "redux";
+import thunk from "redux-thunk";
 import {
   ticketReducer,
   filterReducer,
@@ -13,8 +15,7 @@ import {
   addFiveTicketsReducer,
   stopFetchingReducer,
 } from "./redux/reducer";
-import thunk from "redux-thunk";
-import { Provider } from "react-redux";
+
 import App from "./App/App";
 
 const composeEnhancers =

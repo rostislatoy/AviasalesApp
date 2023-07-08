@@ -6,6 +6,16 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.44.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
     "prettier": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -21,7 +31,26 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "npx prettier --write ."
+    "lint": "eslint .",
+    "prettier": "npx prettier --write .",
+    "lint:fix:src": "eslint --fix ./src",
+    "lint:fix": "eslint --fix . ",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|md|mdx|html|vue|svelte)\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx)": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.+(json|yml|yaml|css|less|scss|md|mdx|html|vue|svelte)": [
+      "prettier --write"
+    ]
   },
   "eslintConfig": {
     "extends": [
