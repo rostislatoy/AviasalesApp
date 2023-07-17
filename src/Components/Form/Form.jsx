@@ -1,96 +1,77 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  toggleAllChecked,
-  toggleNoStopOverChecked,
-  toggleOneStopOverChecked,
-  toggleTwoStopOversChecked,
-  toggleThreeStopOversChecked,
+  toggleAllCheckedTest,
+  toggleFilterCheckedTest,
 } from "../../redux/actions";
 import "./Form.scss";
 
-const Form = () => {
+export default function Form() {
   const formState = useSelector((state) => state.form);
   const dispatch = useDispatch();
-  const {
-    allChecked,
-    noStopOverChecked,
-    oneStopOverChecked,
-    twoStopOversChecked,
-    threeStopOversChecked,
-  } = formState;
-  const handleAllCheckedChange = () => {
-    dispatch(toggleAllChecked());
+  const { filters } = formState;
+
+  const handleCheckedChange = (name) => {
+    dispatch(toggleFilterCheckedTest(name));
   };
 
-  const handleNoStopOverCheckedChange = () => {
-    dispatch(toggleNoStopOverChecked());
+  const handleToggleAllChecked = () => {
+    const allFiltersActive = filters
+      .slice(1)
+      .every((filter) => filter.isActive);
+    const updatedFilters = filters.map((filter, index) =>
+      index === 0
+        ? { ...filter, isActive: !allFiltersActive }
+        : { ...filter, isActive: !allFiltersActive },
+    );
+    dispatch(toggleAllCheckedTest(!allFiltersActive));
+    const updatedAllFilter = {
+      ...updatedFilters[0],
+      isActive: !allFiltersActive,
+    };
+    const updatedFilters2 = updatedFilters.map((filter, index) =>
+      index === 0 ? updatedAllFilter : filter,
+    );
+    dispatch({ type: "UPDATE_FILTERS", payload: updatedFilters2 });
   };
 
-  const handleOneStopOverCheckedChange = () => {
-    dispatch(toggleOneStopOverChecked());
-  };
+  useEffect(() => {
+    if (filters) {
+      const allFiltersActive = filters
+        .slice(1)
+        .every((filter) => filter.isActive);
 
-  const handleTwoStopOversCheckedChange = () => {
-    dispatch(toggleTwoStopOversChecked());
-  };
+      const updatedFilters = filters.map((filter, index) =>
+        index === 0 ? { ...filter, isActive: allFiltersActive } : filter,
+      );
 
-  const handleThreeStopOversCheckedChange = () => {
-    dispatch(toggleThreeStopOversChecked());
-  };
+      dispatch({ type: "UPDATE_FILTERS", payload: updatedFilters });
+    }
+  }, [filters, dispatch]);
 
   return (
     <form className="form">
       <h6 className="form-title">КОЛИЧЕСТВО ПЕРЕСАДОК</h6>
-
       <label>
         <input
           type="checkbox"
-          checked={allChecked}
-          onChange={handleAllCheckedChange}
-        />
-        <span className="checkbox"></span>
-        <span className="checkbox-label">Все</span>
-      </label>
-
-      <label>
-        <input
-          type="checkbox"
-          checked={noStopOverChecked}
-          onChange={handleNoStopOverCheckedChange}
+          checked={filters[0].isActive}
+          onChange={handleToggleAllChecked}
         />
         <span className="checkbox label"></span>
-        <span className="checkbox-label"> Без пересадок</span>
+        <span className="checkbox-label">{filters[0].text}</span>
       </label>
-      <label>
-        <input
-          type="checkbox"
-          checked={oneStopOverChecked}
-          onChange={handleOneStopOverCheckedChange}
-        />
-        <span className="checkbox"></span>
-        <span className="checkbox-label"> 1 пересадка</span>
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          checked={twoStopOversChecked}
-          onChange={handleTwoStopOversCheckedChange}
-        />
-        <span className="checkbox"></span>
-        <span className="checkbox-label"> 2 пересадки</span>
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          checked={threeStopOversChecked}
-          onChange={handleThreeStopOversCheckedChange}
-        />
-        <span className="checkbox"></span>
-        <span className="checkbox-label"> 3 пересадки</span>
-      </label>
+      {filters.slice(1).map((filter) => (
+        <label key={filter.name}>
+          <input
+            type="checkbox"
+            checked={filter.isActive}
+            onChange={() => handleCheckedChange(filter.name)}
+          />
+          <span className="checkbox label"></span>
+          <span className="checkbox-label">{filter.text}</span>
+        </label>
+      ))}
     </form>
   );
-};
-
-export default Form;
+}

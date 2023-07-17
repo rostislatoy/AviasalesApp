@@ -55,3 +55,17 @@ export const toggleFilterChecked = (name) => {
     payload: { name },
   };
 };
+
+export const toggleAllCheckedTest = (isChecked) => {
+  return {
+    type: actionTypes.TOGGLE_ALL_CHECKED_TEST,
+    payload: isChecked,
+  };
+};
+
+export const toggleFilterCheckedTest = (name) => {
+  return {
+    type: actionTypes.TOGGLE_FILTER_CHECKED_TEST,
+    payload: { name },
+  };
+};

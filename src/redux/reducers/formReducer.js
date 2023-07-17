@@ -2,47 +2,49 @@
 import { actionTypes } from "../constants";
 
 const initialFormState = {
-  allChecked: true,
-  noStopOverChecked: true,
-  oneStopOverChecked: true,
-  twoStopOversChecked: true,
-  threeStopOversChecked: true,
+  filters: [
+    { name: "all", text: "Все", isActive: true },
+    { name: "noStopOver", text: "Без пересадок", isActive: true },
+    { name: "oneStopOver", text: "1 пересадка", isActive: true },
+    { name: "twoStopOvers", text: "2 пересадки", isActive: true },
+    { name: "threeStopOvers", text: "3 пересадки", isActive: true },
+  ],
 };
 
 export const formReducer = (state = initialFormState, action) => {
+  const { name } = action.payload || {};
+
   switch (action.type) {
-    case actionTypes.TOGGLE_ALL_CHECKED:
+    case actionTypes.TOGGLE_FILTER_CHECKED_TEST:
+      const updatedFilters1 = state.filters.map((filter) =>
+        filter.name === name
+          ? { ...filter, isActive: !filter.isActive }
+          : filter,
+      );
+      const allFiltersChecked = updatedFilters1
+        .slice(1)
+        .every((filter) => filter.isActive);
+      const allFilter = updatedFilters1.find((filter) => filter.name === "all");
+      if (allFilter && allFilter.isActive !== allFiltersChecked) {
+        allFilter.isActive = allFiltersChecked;
+      }
       return {
         ...state,
-        allChecked: !state.allChecked,
-        noStopOverChecked: !state.allChecked,
-        oneStopOverChecked: !state.allChecked,
-        twoStopOversChecked: !state.allChecked,
-        threeStopOversChecked: !state.allChecked,
+        filters: updatedFilters1,
       };
-    case actionTypes.TOGGLE_NO_STOP_OVER_CHECKED:
-      return {
-        ...state,
-        noStopOverChecked: !state.noStopOverChecked,
-        allChecked: false,
+    case actionTypes.TOGGLE_ALL_CHECKED_TEST:
+      const updatedAllFilter = {
+        ...state.filters[0],
+        isActive: action.payload,
       };
-    case actionTypes.TOGGLE_ONE_STOP_OVER_CHECKED:
+      const updatedFilters2 = state.filters.map((filter, index) =>
+        index === 0
+          ? updatedAllFilter
+          : { ...filter, isActive: action.payload },
+      );
       return {
         ...state,
-        oneStopOverChecked: !state.oneStopOverChecked,
-        allChecked: false,
-      };
-    case actionTypes.TOGGLE_TWO_STOP_OVERS_CHECKED:
-      return {
-        ...state,
-        twoStopOversChecked: !state.twoStopOversChecked,
-        allChecked: false,
-      };
-    case actionTypes.TOGGLE_THREE_STOP_OVERS_CHECKED:
-      return {
-        ...state,
-        threeStopOversChecked: !state.threeStopOversChecked,
-        allChecked: false,
+        filters: updatedFilters2,
       };
     default:
       return state;
