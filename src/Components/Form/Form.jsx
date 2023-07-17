@@ -42,6 +42,7 @@ const Form = () => {
   return (
     <form className="form">
       <h6 className="form-title">КОЛИЧЕСТВО ПЕРЕСАДОК</h6>
+
       <label>
         <input
           type="checkbox"
@@ -49,8 +50,9 @@ const Form = () => {
           onChange={handleAllCheckedChange}
         />
         <span className="checkbox"></span>
-        <span className="checkbox-label"> Все</span>
+        <span className="checkbox-label">Все</span>
       </label>
+
       <label>
         <input
           type="checkbox"

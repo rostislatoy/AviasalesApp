@@ -1,4 +1,15 @@
-export default async function getTickets(generateRandomId) {
+export async function getID() {
+  const sessionDATA = await fetch(
+    "https://aviasales-test-api.kata.academy/search",
+  );
+  if (sessionDATA.ok) {
+    const sessionJSON = await sessionDATA.json();
+
+    return sessionJSON.searchId;
+  }
+}
+
+export async function getTickets(generateRandomId, id) {
   const errorTicket = {
     id: 99999999,
     price: "ERROR!",
@@ -20,34 +31,26 @@ export default async function getTickets(generateRandomId) {
       },
     ],
   };
-  const searchURL = "https://aviasales-test-api.kata.academy/search";
   const ticketsURL = "https://aviasales-test-api.kata.academy/tickets";
 
   try {
-    const sessionDATA = await fetch(searchURL);
+    try {
+      const ticketsDATA = await fetch(`${ticketsURL}?searchId=${id}`);
+      if (ticketsDATA.ok) {
+        const ticketsJSON = await ticketsDATA.json();
+        const ticketsWithID = ticketsJSON.tickets.map((el) => {
+          const newTicket = {
+            ...el,
+            id: generateRandomId(),
+          };
 
-    if (sessionDATA.ok) {
-      const sessionJSON = await sessionDATA.json();
+          return newTicket;
+        });
 
-      try {
-        const ticketsDATA = await fetch(
-          `${ticketsURL}?searchId=${sessionJSON.searchId}`,
-        );
-        if (ticketsDATA.ok) {
-          const ticketsJSON = await ticketsDATA.json();
-          const ticketsWithID = ticketsJSON.tickets.map((el) => {
-            const newTicket = {
-              ...el,
-              img: `pics.avs.io/99/36/${el.carrier}.png`,
-              id: generateRandomId(),
-            };
-            return newTicket;
-          });
-          return [ticketsWithID, ticketsJSON.stop];
-        }
-      } catch (error) {
-        return [errorTicket];
+        return [ticketsWithID, ticketsJSON.stop];
       }
+    } catch (error) {
+      return [errorTicket];
     }
   } catch (error) {
     return [errorTicket];

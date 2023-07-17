@@ -5,8 +5,8 @@ import Form from "../Components/Form/Form";
 import Filter from "../Components/Filter/Filter";
 import TicketList from "../Components/TicketList/TicketList";
 import Loader from "../Components/Loader/Loader";
-import { uploadTickets, stopFetching } from "../redux/actions";
-import getTickets from "./helpers/getTickets";
+import { uploadTickets, setID, stopFetching } from "../redux/actions";
+import { getTickets, getID } from "./helpers/getTickets";
 import generateRandomId from "./helpers/generateID";
 import "./App.scss";
 
@@ -15,18 +15,42 @@ export default function App() {
   const visibility = useSelector((state) => state.visTickets);
   const filter = useSelector((state) => state.filter);
   const form = useSelector((state) => state.form);
+  const stop = useSelector((state) => state.stop);
+  const ID = useSelector((state) => state.id);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchTickets = async () => {
-      const [fetchedTickets] = await getTickets(generateRandomId);
-      dispatch(uploadTickets(fetchedTickets));
-      dispatch(stopFetching(false));
-    };
-    fetchTickets();
-  }, []);
+    if (!ID) {
+      const fetchID = async () => {
+        const IDtickets = await getID();
+        dispatch(setID(IDtickets));
+      };
+      fetchID();
+    }
+  }, [dispatch, ID]);
 
-  const isLoad = tickets.length ? (
+  useEffect(() => {
+    const fetchTickets = async () => {
+      const [fetchedTickets, serverStop] = await getTickets(
+        generateRandomId,
+        ID,
+      );
+
+      dispatch(uploadTickets(fetchedTickets));
+
+      if (!serverStop) {
+        fetchTickets();
+      } else {
+        dispatch(stopFetching(serverStop));
+      }
+    };
+
+    if (ID && !stop) {
+      fetchTickets();
+    }
+  }, [dispatch, ID, stop]);
+
+  const loadTickets = tickets.length ? (
     <TicketList
       tickets={tickets}
       visibility={visibility}
@@ -47,7 +71,7 @@ export default function App() {
         </aside>
         <section className="main-tickets__list">
           <Filter />
-          {isLoad}
+          {loadTickets}
         </section>
       </main>
     </section>

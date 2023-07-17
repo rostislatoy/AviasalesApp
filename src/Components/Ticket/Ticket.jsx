@@ -5,13 +5,16 @@ import getStringToTransfer from "./helpers/transferCalc";
 import "./Ticket.scss";
 
 function Ticket(props) {
-  const { price, img, segments } = props;
+  const { price, segments, carrier } = props;
 
   return (
     <div className="ticket">
       <div className="ticket-header">
         <h1 className="ticket-header title">{`${price} Р`}</h1>
-        <img src={`https://${img}`} className="ticket-header ticket-logo"></img>
+        <img
+          src={`https://pics.avs.io/99/36/${carrier}.png`}
+          className="ticket-header ticket-logo"
+        ></img>
       </div>
 
       <div className="ticket-main">

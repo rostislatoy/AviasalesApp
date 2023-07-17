@@ -1,24 +1,12 @@
-import { actionTypes, initialFormState } from "./constants";
+/* eslint-disable no-case-declarations */
+import { actionTypes } from "../constants";
 
-export const ticketReducer = (state = [], action) => {
-  switch (action.type) {
-    case actionTypes.FETCH_DATA_SUCCESS:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-export const filterReducer = (state = "cheapest", action) => {
-  if (state === undefined) {
-    return "cheapest";
-  }
-  switch (action.type) {
-    case "UPDATE_FILTER":
-      return action.payload;
-    default:
-      return state;
-  }
+const initialFormState = {
+  allChecked: true,
+  noStopOverChecked: true,
+  oneStopOverChecked: true,
+  twoStopOversChecked: true,
+  threeStopOversChecked: true,
 };
 
 export const formReducer = (state = initialFormState, action) => {
@@ -56,24 +44,6 @@ export const formReducer = (state = initialFormState, action) => {
         threeStopOversChecked: !state.threeStopOversChecked,
         allChecked: false,
       };
-    default:
-      return state;
-  }
-};
-
-export const addFiveTicketsReducer = (state = 5, action) => {
-  switch (action.type) {
-    case "ADD_MORE_TICKETS":
-      return state + 5;
-    default:
-      return state;
-  }
-};
-
-export const stopFetchingReducer = (state = false, action) => {
-  switch (action.type) {
-    case "FETCH_STOP":
-      return (state = action.payload);
     default:
       return state;
   }

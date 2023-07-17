@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Header.scss";
 import logo from "./img/avia-logo.png";
 
-export default function Header() {
-  const [stop, setStop] = useState(false);
+import { useSelector } from "react-redux";
 
-  setTimeout(() => {
-    setStop(true);
-  }, 6000);
+export default function Header() {
+  const stop = useSelector((state) => state.stop);
 
   return (
     <header className="header">

@@ -36,7 +36,22 @@ export const addFiveTickets = () => ({
   type: actionTypes.ADD_MORE_TICKETS,
 });
 
-export const stopFetching = (stop) => ({
-  type: "FETCH_STOP",
-  payload: stop,
-});
+export const stopFetching = (stop) => (dispatch) => {
+  dispatch({
+    type: actionTypes.FETCH_STOP,
+    payload: stop,
+  });
+};
+export const setID = (ID) => (dispatch) => {
+  dispatch({
+    type: actionTypes.ID,
+    payload: ID,
+  });
+};
+
+export const toggleFilterChecked = (name) => {
+  return {
+    type: actionTypes.TOGGLE_FILTER_CHECKED,
+    payload: { name },
+  };
+};

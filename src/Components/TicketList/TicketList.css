@@ -1,10 +1,7 @@
-$btn: #2196f3;
-
 .ticket-list {
   position: relative;
   width: 100%;
   height: auto;
-
   margin-top: 0px;
 }
 
@@ -14,18 +11,15 @@ $btn: #2196f3;
   padding: 15px;
   border: none;
   color: white;
-  background: $btn;
+  background: #2196f3;
   font-family: Open Sans;
   font-size: 14px;
   border-radius: 8px;
   box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.1);
-  &.go-up {
-    margin-bottom: 20px;
-  }
 }
 
 .ticket-list__no-tickets-message {
-  width: 502px;
+  width: 100%;
   text-align: center;
   padding: 58px;
   background: white;
@@ -34,7 +28,7 @@ $btn: #2196f3;
   font-size: 18px;
   font-family: Open Sans;
   max-width: 512px;
-  color: $btn;
+  color: #2196f3;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -48,4 +42,4 @@ $btn: #2196f3;
   .ticket-list__btn {
     padding: 30px;
   }
-}
+} /*# sourceMappingURL=TicketList.css.map */

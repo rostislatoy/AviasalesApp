@@ -8,13 +8,12 @@ import {
   compose,
 } from "redux";
 import thunk from "redux-thunk";
-import {
-  ticketReducer,
-  filterReducer,
-  formReducer,
-  addFiveTicketsReducer,
-  stopFetchingReducer,
-} from "./redux/reducer";
+import { ticketReducer } from "./redux/reducers/ticketReducer";
+import { filterReducer } from "./redux/reducers/filterReducer";
+import { formReducer } from "./redux/reducers/formReducer";
+import { addFiveTicketsReducer } from "./redux/reducers/addFiveTicketsReducer";
+import { stopFetchingReducer } from "./redux/reducers/stopFetchingReducer";
+import { setIdReducer } from "./redux/reducers/setIdReducer";
 
 import App from "./App/App";
 
@@ -29,6 +28,7 @@ const rootReducer = combineReducers({
   form: formReducer,
   visTickets: addFiveTicketsReducer,
   stop: stopFetchingReducer,
+  id: setIdReducer,
 });
 
 const store = legacy_createStore(

@@ -1,32 +1,29 @@
-$bg: #f3f7fa;
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  background: $bg;
-}
-body::-webkit-scrollbar {
-  display: none;
+  background: #f3f7fa;
 }
 
 .App {
   width: 100vw;
   height: 100vh;
-  background-color: $bg;
+  background-color: #f3f7fa;
 }
+
 .main {
   display: flex;
   justify-content: center;
-
   padding: 0 2vw;
   margin: 0 auto;
 }
 
 .load-box {
-  width: 502px;
+  min-width: 512px;
+  width: 100%;
   padding: 42px;
   margin-top: 20px;
   display: flex;
@@ -41,7 +38,6 @@ body::-webkit-scrollbar {
     max-width: 900px;
   }
 }
-
 @media screen and (max-width: 500px) {
   .main {
     flex-direction: column;
@@ -59,4 +55,4 @@ body::-webkit-scrollbar {
     min-width: 100%;
     max-width: 100%;
   }
-}
+} /*# sourceMappingURL=App.css.map */
