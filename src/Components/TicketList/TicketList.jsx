@@ -12,11 +12,14 @@ function TicketList({ tickets, visibility, filter, form }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const offsetY = window.pageYOffset;
-      if (offsetY > 100) {
-        buttonRef.current.style.display = "block";
-      } else {
-        buttonRef.current.style.display = "none";
+    
+      if(buttonRef.current.style !== null){
+        const offsetY = window.pageYOffset;
+        if (offsetY > 100) {
+          buttonRef.current.style.display = "block";
+        } else {
+          buttonRef.current.style.display = "none";
+        }
       }
     };
 

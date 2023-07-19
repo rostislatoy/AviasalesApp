@@ -3,12 +3,6 @@ export const sortedTickets = (array, filter, formState) => {
     if (formState.filters[0].isActive) {
       return true;
     }
-    // if (
-    //   formState.filters[0].isActive &&
-    //   ticket.segments.every((segment) => segment.stops.length)
-    // ) {
-    //   return true;
-    // }
     if (
       formState.filters[1].isActive &&
       ticket.segments.some((segment) => segment.stops.length === 0)

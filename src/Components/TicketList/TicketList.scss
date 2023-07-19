@@ -25,7 +25,6 @@ $btn: #2196f3;
 }
 
 .ticket-list__no-tickets-message {
-  width: 502px;
   text-align: center;
   padding: 58px;
   background: white;
@@ -33,7 +32,7 @@ $btn: #2196f3;
   border-radius: 8px;
   font-size: 18px;
   font-family: Open Sans;
-  max-width: 512px;
+  max-width: 502px;
   color: $btn;
   box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
 }
